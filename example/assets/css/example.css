@@ -1,0 +1,30 @@
+* { margin: 0; padding: 0; text-align: center; }
+
+.page {
+  max-width: 45em;
+  margin: 0 auto;
+}
+
+header, main, footer {
+	padding: 1em;
+}
+
+header {
+  background: orange;
+}
+
+nav ul {
+	list-style: none;
+	padding: 1em 0;
+}
+
+nav ul li {
+	display: inline-block;
+	margin-right: 20px;
+}
+
+footer {
+  background: #4d4d4d;
+  color: white;
+  text-align: center;
+}
