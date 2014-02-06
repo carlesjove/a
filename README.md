@@ -59,10 +59,38 @@ If you create a file named `layout.php` **A** will use it as a wrapper for all p
 
 Within the `data` directory you'll find a file called `global.php` where you can write page wide variables. You can also create individual files named that will be only loaded on request, just by namig them the same as the page file. So if you have a page named `about.php` **A** will look for a `data/bio.php` file and load it. If your page is `very_long_route.php`, then the data for it will be in `data/very_long_route.php`.
 
+#### Lists and single item pages
+**A** allows to create individual item pages from a list using a single template, just like in MVC frameworks and most CMS. 
+
+Imagine you have a page called `posts.php` that lists all your posts. You can now create another file called `posts_[id].php` which will be used as the template for individual posts. You need to have the array of posts in `data/posts.php` and name it `$list`, where each array `key` is the url you want for the post. **A** will load the post data in the `$item` variable. Example:
+
+```
+// data/posts.php
+// The array must be named $list
+$list = array(
+	'first-post' => array(
+		'title' => 'My first post',
+		'body'	=> 'A very long post'
+	),
+	'second-post' => array(
+		'title' => 'My second post',
+		'body'	=> 'A very long post'
+	)
+);
+
+// posts_[id].php
+// We get the post data in $item
+<h1><?php echo $item['title']; ?></h1>
+<?php echo $item['body']; ?>
+```
+
+## Changelog
+== 0.2 ==
+- Adds support for `list/:id` items
+
 ## Roadmap
 - Add support for multilingual sites (which basically means finding a way to route en_home.php as home.php)
 - Add support for multiple layouts
-- Add support for `show/:id` items
 
 ## License
 Do whatever the fuck you want with this code. Really. 

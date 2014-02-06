@@ -7,7 +7,7 @@ if ( ! class_exists('A') ) {
 	* Just name a file like_this.php and you'll get a route http://example.com/like/this. 
 	*
 	* @author 	Carles Jove i Buxeda
-	* @version 	0.1
+	* @version 	0.2
 	* @link 		http://github.com/carlesjove/a
 	* @license  MIT License (http://www.opensource.org/licenses/mit-license.php)
 	*/
@@ -25,7 +25,15 @@ if ( ! class_exists('A') ) {
 		}
 
 		private function find_matches() {
-			$file = ! empty($this->path[0]) ? implode('_', $this->path) : 'home';	
+			if ( ! empty($this->path[0]) ) { 
+				if ( $this->is_item_page() ) {
+					$file = $this->path[0] . '_' . '[id]';
+				} else {
+					$file = implode('_', $this->path);
+				} 
+			} else {
+				$file = 'home';
+			}
 
 			// Not found
 			if ( ! file_exists($this->as_file($file)) ) {
@@ -37,6 +45,10 @@ if ( ! class_exists('A') ) {
 			} else { // Not even 404 was found, so raise and Exception
 				throw new Exception( "Could not find any file matching " . implode('_', $this->path) );
 			}
+		}
+
+		private function is_item_page() {
+			return isset( $this->path[1] ) and file_exists( $this->as_file($this->path[0] . '_' . '[id]') );
 		}
 
 		private function as_file($string) {
@@ -53,6 +65,12 @@ if ( ! class_exists('A') ) {
 		private function content() {
 			if ( file_exists('data/' . $this->request) ) {
 				include 'data/' . $this->request;
+			}
+			if ( $this->is_item_page() and file_exists($this->as_file( 'data/' . $this->path[0])) ) {
+				include $this->as_file( 'data/' . $this->path[0] );
+				if ( isset($list) and isset($list[$this->path[1]]) ) {
+					$item = $list[$this->path[1]];
+				}
 			}
 			include $this->request;
 		}
