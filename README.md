@@ -15,7 +15,7 @@ A minimal PHP router based on file naming, for those times you want to keep thin
 - PHP server running Appache
 
 ## Usage
-**A** works out of the box with no need of configuration. Download the files and start building your site. The only extra step you need to take is renaming `htaccess.txt` to `.htaccess`.
+**A** works out of the box with no need of configuration. Download the files and start building your site.
 
 #### URIs and file naming
 Imagine you want `this/cool/uri` in your site. For it to work, you just need to create a file named `this_cool_uri.php`, and you're done. You probably want a home page for your site, so create a file named `home.php`, and there you go.
@@ -85,6 +85,9 @@ $list = array(
 ```
 
 ## Changelog
+== 0.3 ==
+- Generate .htaccess automatically
+
 == 0.2 ==
 - Adds support for `list/:id` items
 

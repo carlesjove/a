@@ -7,7 +7,7 @@ if ( ! class_exists('A') ) {
 	* Just name a file like_this.php and you'll get a route http://example.com/like/this. 
 	*
 	* @author 	Carles Jove i Buxeda
-	* @version 	0.2
+	* @version 	0.3
 	* @link 		http://github.com/carlesjove/a
 	* @license  MIT License (http://www.opensource.org/licenses/mit-license.php)
 	*/
@@ -89,6 +89,16 @@ if ( ! class_exists('A') ) {
 			} catch (Exception $e) {
 				echo $e->getMessage();
 			}
+		}
+
+		public static function generate_htaccess() {
+			$htaccess = "<IfModule mod_rewrite.c> \n"
+						   . "RewriteEngine On \n"
+						   . "RewriteCond %{REQUEST_FILENAME} !-d \n"
+						   . "RewriteCond %{REQUEST_FILENAME} !-f \n"
+						   . "RewriteRule ^(.*)$ index.php?path=$1 [QSA,L] \n"
+							 . "</IfModule>";
+			file_put_contents('.htaccess', $htaccess );
 		}
 	}
 
