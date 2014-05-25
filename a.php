@@ -79,15 +79,19 @@ if ( ! class_exists('A') ) {
 			try {
 				$this->find_matches();
 				if ( $this->uses_layout() ) {
-					if ( file_exists('data/' . $this->as_file('global')) ) {
-						include 'data/' . $this->as_file('global');
-					}
+					include $this->global_data();
 					include $this->layout;
 				} else {
 					include $this->content();
 				}	
 			} catch (Exception $e) {
 				echo $e->getMessage();
+			}
+		}
+
+		private function global_data() {
+			if ( file_exists('data/' . $this->as_file('global')) ) {
+				return 'data/' . $this->as_file('global');
 			}
 		}
 
