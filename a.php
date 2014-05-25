@@ -71,15 +71,26 @@ if ( ! class_exists('A') ) {
 		}
 
 		private function content() {
-			if ( file_exists('data/' . $this->request) ) {
-				include 'data/' . $this->request;
+			
+			$data_directories = array('data/');
+
+			// Override with multilingual content
+			if ( $this->is_multilingual() and $this->current_lang ) {
+				array_push($data_directories, "data/langs/{$this->current_lang}/");
 			}
-			if ( $this->is_item_page() and file_exists($this->as_file( 'data/' . $this->path[0])) ) {
-				include $this->as_file( 'data/' . $this->path[0] );
-				if ( isset($list) and isset($list[$this->path[1]]) ) {
-					$item = $list[$this->path[1]];
+
+			foreach ( $data_directories as $data ) {
+				if ( file_exists($data . $this->request) ) {
+					include $data . $this->request;
+				}
+				if ( $this->is_item_page() and file_exists($this->as_file( $data . $this->path[0])) ) {
+					include $this->as_file( $data . $this->path[0] );
+					if ( isset($list) and isset($list[$this->path[1]]) ) {
+						$item = $list[$this->path[1]];
+					}
 				}
 			}
+			
 			include $this->request;
 		}
 
