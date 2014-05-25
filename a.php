@@ -144,6 +144,17 @@ if ( ! class_exists('A') ) {
 							 . "</IfModule>";
 			file_put_contents('.htaccess', $htaccess );
 		}
+
+		/**
+		 Helper methods
+		 */
+		public function nav($item) {
+			$output = $item;
+			if ( $this->current_lang ) {
+				$output = $this->current_lang . '/' . $item;
+			}
+			return '/' . $output;
+		}
 	}
 
 }

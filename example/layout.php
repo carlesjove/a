@@ -14,10 +14,10 @@
 				</h1>
 				<nav>
 					<ul>
-						<li><a href="/my-page">My Page</a></li>
-						<li><a href="/my/subpage">My Sub Page</a></li>
-						<li><a href="/list">My List</a></li>
-						<li><a href="/a/non-exisiting-page">Non Exisiting Page</a></li>
+						<li><a href="<?php echo $this->nav('my-page'); ?>">My Page</a></li>
+						<li><a href="<?php echo $this->nav('my/subpage'); ?>">My Sub Page</a></li>
+						<li><a href="<?php echo $this->nav('list'); ?>">My List</a></li>
+						<li><a href="<?php echo $this->nav('a/non-exisiting-page'); ?>">Non Exisiting Page</a></li>
 					</ul>
 				</nav>
 			</header>
