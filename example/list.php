@@ -1,4 +1,7 @@
-<h1>I'm a list page</h1>
+<h1><?php echo $title; ?></h1>
+<p><?php echo $body; ?></p>
+<br>
+<p><?php echo $after_body; ?></p>
 <ul>
 	<?php foreach ( $list as $k => $item ): ?>
 	<li>
