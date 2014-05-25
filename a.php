@@ -148,6 +148,16 @@ if ( ! class_exists('A') ) {
 		/**
 		 Helper methods
 		 */
+
+		/**
+		 * Nav
+		 * Returns an absolute URL for the $item, which will
+		 * contain the language if it's multilingual site
+		 *
+		 * In your layout.php you would use is like this:
+		 * <a href="<?php echo $this->nav('my-page'); ?>">My Page</a>
+		 * This will return /my-page or /[lang]/my-page
+		 */
 		public function nav($item) {
 			$output = $item;
 			if ( $this->current_lang ) {
@@ -162,6 +172,7 @@ if ( ! class_exists('A') ) {
 		 *
 		 * In your layout.php you would use is like this:
 		 * <a href="<?php echo $this->lang('ca'); ?>">Català</a>
+		 * This will return /ca/[current-page]
 		 */
 		public function lang($lang) {
 			return '/' . $lang . '/' . implode('/', $this->path);
