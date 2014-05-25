@@ -88,6 +88,9 @@ if ( ! class_exists('A') ) {
 				$this->find_matches();
 				if ( $this->uses_layout() ) {
 					include $this->global_data();
+					if ( $this->is_multilingual() and $this->current_lang ) {
+						include $this->global_data($this->current_lang);
+					}
 					include $this->layout;
 				} else {
 					include $this->content();
@@ -97,9 +100,13 @@ if ( ! class_exists('A') ) {
 			}
 		}
 
-		private function global_data() {
-			if ( file_exists('data/' . $this->as_file('global')) ) {
-				return 'data/' . $this->as_file('global');
+		private function global_data($lang = '') {
+			if ( $lang != '' and file_exists( "data/langs/{$lang}/" . $this->as_file('global') ) ) {
+				return "data/langs/{$lang}/" . $this->as_file('global');
+			} else {
+				if ( file_exists('data/' . $this->as_file('global')) ) {
+					return 'data/' . $this->as_file('global');
+				}
 			}
 		}
 
