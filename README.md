@@ -1,14 +1,15 @@
 # A
-**A** is a PHP microframework based on file naming, for those times you want to keep things simple. Just name a file `like_this.php` and you'll get a route `http://example.com/like/this`. No database, no configuration files, no nothing.
+**A** is a PHP microframework based on file naming, for those times you want to keep things simple. Just name a file `like_this.php` and you'll get a working route `http://example.com/like/this`. No database, no configuration files, no nothing. And it's ready for multilingual sites.
 
 ## Overview
-**A** is meant for simple sites that do not require database or complex architectures, but still want to have clean URLs and things as organized as possible. 
+**A** is meant for simple sites that do not require database or complex architectures, but still want to have clean URLs and stuff as organized as possible. 
 
 #### Features
 - Clean URLs based on file naming
 - Simple layout system
 - Separation of data and presentation
 - 404 (Not Found) template for non-existent routes
+- Multilingual sites
 
 #### Requirements
 - PHP 5 or later
@@ -36,10 +37,17 @@ If you create a file named `layout.php` **A** will use it as a wrapper for all p
 			<h1>My Site</h1>
 			<nav>
 				<ul>
-					<li><a href="/my-page">My Page</a></li>
-					<li><a href="/my/subpage">My Sub Page</a></li>
+					<li><a href="<?php echo $this->nav('my-page'); ?>">My Page</a></li>
+					<li><a href="<?php echo $this->nav('my-sub-page'); ?>">My Sub Page</a></li>
 				</ul>
 			</nav>
+
+			<!-- This site is multilingual, so here go the languages -->
+			<ul class="lang-list">
+				<li><a href="<?php echo $this->lang('ca'); ?>">Català</a></li>
+				<li><a href="<?php echo $this->lang('es'); ?>">Castellano</a></li>
+				<li><a href="<?php echo $this->lang('en'); ?>">English</a></li>
+			</ul>
 		</header>
 		
 		<main>
@@ -84,16 +92,46 @@ $list = array(
 <?php echo $item['body']; ?>
 ```
 
+#### Multilingual sites
+If you want your sites to support multiple languages, it's really easy. You just need to create a `langs` directory within the `data` directory, and there creating a directory for every language you want to support. And example would be:
+
+```
+data/langs/ca
+data/langs/es
+data/langs/en
+```
+
+Now in each language directory, you can create your data files as usual, following the naming pattern, so `my_page.php` will look at `data/langs/[current language]/my_page.php`.
+
+One important thing to know is: **A** won't use translations instead of other data, it will just override it. That means that if your current language is `fr` and your current page is `my_page.php`, **A** will get data first from `data/my_page.php` and then from `data/langs/fr/my_page.php`. This is a convenient way to keep things DRY when a given text doesn't need translation.
+
+If you're creating a multilingual site, you'd really want to use the helper methods `nav()` and `lang()` to preserve routes accross languages.
+
+```
+<!-- Make sure current language will be on the navigation links or in lists' links, using nav() -->
+<a href="<?php echo $this->nav('my-page'); ?>">My Page</a>
+
+<?php foreach ( $list as $k => $item ): ?>
+<li>
+	<a href="<?php echo $this->nav("list/{$k}"); ?>">
+		<?php echo $item['title']; ?>
+	</a>
+</li>
+<?php endforeach; ?>
+
+<!-- Make sure you will stay on the same page when switching languages, using lang() -->
+<a href="<?php echo $this->lang('es'); ?>">Castellano</a>
+``
+
 ## Changelog
+== 0.4 ==
+- Added support for multilingual sites
+
 == 0.3 ==
 - Generate .htaccess automatically
 
 == 0.2 ==
 - Adds support for `list/:id` items
-
-## Roadmap
-- Add support for multilingual sites (which basically means finding a way to route en_home.php as home.php)
-- Add support for multiple layouts
 
 ## License
 Do whatever the fuck you want with this code. Really. 

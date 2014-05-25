@@ -7,7 +7,7 @@ if ( ! class_exists('A') ) {
 	* Just name a file like_this.php and you'll get a route http://example.com/like/this. 
 	*
 	* @author 	Carles Jove i Buxeda
-	* @version 	0.3
+	* @version 	0.4
 	* @link 		http://github.com/carlesjove/a
 	* @license  MIT License (http://www.opensource.org/licenses/mit-license.php)
 	*/
