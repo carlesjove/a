@@ -121,7 +121,7 @@ If you're creating a multilingual site, you'd really want to use the helper meth
 
 <!-- Make sure you will stay on the same page when switching languages, using lang() -->
 <a href="<?php echo $this->lang('es'); ?>">Castellano</a>
-``
+```
 
 ## Changelog
 == 0.4 ==
