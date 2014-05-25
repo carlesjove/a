@@ -16,6 +16,7 @@ if ( ! class_exists('A') ) {
 		public $path;
 		public $layout = 'layout';
 		private $request = '404';
+		public $current_lang;
 		
 		function __construct($path)
 		{
@@ -25,6 +26,13 @@ if ( ! class_exists('A') ) {
 		}
 
 		private function find_matches() {
+			// Is multilingual ?
+			if ( ! empty($this->path[0]) ) { 
+				if ( $this->is_multilingual() and $this->language_exists($this->path[0]) ) {
+					$this->current_lang = array_shift($this->path);
+				}
+			}
+
 			if ( ! empty($this->path[0]) ) { 
 				if ( $this->is_item_page() ) {
 					$file = $this->path[0] . '_' . '[id]';
@@ -93,6 +101,20 @@ if ( ! class_exists('A') ) {
 			if ( file_exists('data/' . $this->as_file('global')) ) {
 				return 'data/' . $this->as_file('global');
 			}
+		}
+
+		private function is_multilingual() {
+			if ( is_dir( 'data/langs' ) ) {
+				return true;
+			}
+			return false;
+		}
+
+		private function language_exists($lang) {
+			if ( is_dir( "data/langs/{$lang}" ) ) {
+				return true;
+			}
+			return false;
 		}
 
 		public static function generate_htaccess() {
