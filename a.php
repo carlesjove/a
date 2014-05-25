@@ -155,6 +155,17 @@ if ( ! class_exists('A') ) {
 			}
 			return '/' . $output;
 		}
+
+		/**
+		 * Lang
+		 * Returns the current page link for the requested language
+		 *
+		 * In your layout.php you would use is like this:
+		 * <a href="<?php echo $this->lang('ca'); ?>">Català</a>
+		 */
+		public function lang($lang) {
+			return '/' . $lang . '/' . implode('/', $this->path);
+		}
 	}
 
 }

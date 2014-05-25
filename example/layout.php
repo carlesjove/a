@@ -20,6 +20,12 @@
 						<li><a href="<?php echo $this->nav('a/non-exisiting-page'); ?>">Non Exisiting Page</a></li>
 					</ul>
 				</nav>
+
+				<ul class="lang-list">
+					<li><a href="<?php echo $this->lang('ca'); ?>">Català</a></li>
+					<li><a href="<?php echo $this->lang('es'); ?>">Castellano</a></li>
+					<li><a href="<?php echo $this->lang('en'); ?>">English</a></li>
+				</ul>
 			</header>
 			
 			<main>
