@@ -7,7 +7,7 @@ if ( ! class_exists('A') ) {
 	* Just name a file like_this.php and you'll get a route http://example.com/like/this. 
 	*
 	* @author 	Carles Jove i Buxeda
-	* @version 	0.4
+	* @version 	0.5
 	* @link 		http://github.com/carlesjove/a
 	* @license  MIT License (http://www.opensource.org/licenses/mit-license.php)
 	*/
@@ -20,7 +20,7 @@ if ( ! class_exists('A') ) {
 		
 		function __construct($path)
 		{
-			$this->path = explode('/', $path);
+			$this->path = $this->ignore_ending_slash( explode('/', $path) );
 			$this->layout = $this->as_file($this->layout);
 			$this->dispatch();
 		}
@@ -133,6 +133,14 @@ if ( ! class_exists('A') ) {
 				return true;
 			}
 			return false;
+		}
+
+		private function ignore_ending_slash($array) {
+			$last = count($array) - 1;
+			if ( empty( $array[$last] ) ) {
+				unset($array[$last]);
+			}
+			return $array;
 		}
 
 		public static function generate_htaccess() {
