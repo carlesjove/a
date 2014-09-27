@@ -124,6 +124,9 @@ If you're creating a multilingual site, you'd really want to use the helper meth
 ```
 
 ## Changelog
+== 0.5 ==
+- Fixes routes being broken because of ending trailing slashes
+
 == 0.4 ==
 - Added support for multilingual sites
 
