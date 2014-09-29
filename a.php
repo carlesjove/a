@@ -74,8 +74,14 @@ if ( ! class_exists('A') ) {
 			
 			$data_directories = array('data/');
 
-			// Override with multilingual content
+			// Include global data
+			include $this->global_data();
+
+			// It's multilingual
 			if ( $this->is_multilingual() and $this->current_lang ) {
+				// Include global data for the current language
+				include $this->global_data($this->current_lang);
+				// Iclude page content for the current language
 				array_push($data_directories, "data/langs/{$this->current_lang}/");
 			}
 
