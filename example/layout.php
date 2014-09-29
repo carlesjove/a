@@ -34,6 +34,8 @@
 			
 			<footer>
 				<p><?php echo $colophon; ?></p>
+				<?php echo my_custom_function(); ?> ;-)
+				<?php echo $this->my_a_extension(); ?>
 			</footer>
 		</div>
 	</body>

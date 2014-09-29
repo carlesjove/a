@@ -103,6 +103,12 @@ if ( ! class_exists('A') ) {
 		private function dispatch() {
 			try {
 				$this->find_matches();
+
+				// Include custom functions
+				if ( file_exists( $this->as_file('functions') ) ) {
+					include $this->as_file('functions');
+				}
+
 				if ( $this->uses_layout() ) {
 					include $this->global_data();
 					if ( $this->is_multilingual() and $this->current_lang ) {
