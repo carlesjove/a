@@ -10,7 +10,7 @@
 		<div class="page">
 			<header>
 				<h1>
-					<a href="/"><?php echo $title; ?></a>
+					<a href="<?php echo $this->nav(); ?>"><?php echo $title; ?></a>
 				</h1>
 				<nav>
 					<ul>
