@@ -116,7 +116,7 @@ if ( ! class_exists('A') ) {
 					}
 					include $this->layout;
 				} else {
-					include $this->content();
+					$this->content();
 				}	
 			} catch (Exception $e) {
 				echo $e->getMessage();
