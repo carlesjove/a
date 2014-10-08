@@ -15,17 +15,17 @@ if ( ! class_exists('A') ) {
 	{
 		public $path;
 		public $layout = 'layout';
-		private $request = '404';
+		protected $request = '404';
 		public $current_lang;
 		
-		function __construct($path)
+		public function __construct($path)
 		{
 			$this->path = $this->ignore_ending_slash( explode('/', $path) );
 			$this->layout = $this->as_file($this->layout);
 			$this->dispatch();
 		}
 
-		private function find_matches() {
+		protected function find_matches() {
 			// Is multilingual ?
 			if ( ! empty($this->path[0]) ) { 
 				if ( $this->is_multilingual() and $this->language_exists($this->path[0]) ) {
@@ -55,22 +55,22 @@ if ( ! class_exists('A') ) {
 			}
 		}
 
-		private function is_item_page() {
+		protected function is_item_page() {
 			return isset( $this->path[1] ) and file_exists( $this->as_file($this->path[0] . '_' . '[id]') );
 		}
 
-		private function as_file($string) {
+		protected function as_file($string) {
 			return $string . '.php';
 		}
 
-		private function uses_layout() {
+		protected function uses_layout() {
 			if ( file_exists($this->layout) ) {
 				return true;
 			}
 			return false;
 		}
 
-		private function content() {
+		protected function content() {
 			
 			$data_directories = array('data/');
 
@@ -100,7 +100,7 @@ if ( ! class_exists('A') ) {
 			include $this->request;
 		}
 
-		private function dispatch() {
+		protected function dispatch() {
 			try {
 				$this->find_matches();
 
@@ -123,7 +123,7 @@ if ( ! class_exists('A') ) {
 			}
 		}
 
-		private function global_data($lang = '') {
+		protected function global_data($lang = '') {
 			if ( $lang != '' and file_exists( "data/langs/{$lang}/" . $this->as_file('global') ) ) {
 				return "data/langs/{$lang}/" . $this->as_file('global');
 			} else {
@@ -133,21 +133,21 @@ if ( ! class_exists('A') ) {
 			}
 		}
 
-		private function is_multilingual() {
+		protected function is_multilingual() {
 			if ( is_dir( 'data/langs' ) ) {
 				return true;
 			}
 			return false;
 		}
 
-		private function language_exists($lang) {
+		protected function language_exists($lang) {
 			if ( is_dir( "data/langs/{$lang}" ) ) {
 				return true;
 			}
 			return false;
 		}
 
-		private function ignore_ending_slash($array) {
+		protected function ignore_ending_slash($array) {
 			$last = count($array) - 1;
 			if ( empty( $array[$last] ) ) {
 				unset($array[$last]);
