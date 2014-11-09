@@ -9,6 +9,7 @@
 - Simple layout system
 - Separation of data and presentation
 - 404 (Not Found) template for non-existent routes
+- Custom functions
 - Multilingual sites
 
 #### Requirements
@@ -123,7 +124,14 @@ If you're creating a multilingual site, you'd really want to use the helper meth
 <a href="<?php echo $this->lang('es'); ?>">Castellano</a>
 ```
 
+#### Custom functions
+
+Sometimes you want to do things, and you wrap them in functions. You can put them in a file named `functions.php`, and it will be included.
+
 ## Changelog
+== 0.6 ==
+- Code improvements
+
 == 0.5 ==
 - Fixes routes being broken because of ending trailing slashes
 

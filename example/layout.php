@@ -10,7 +10,7 @@
 		<div class="page">
 			<header>
 				<h1>
-					<a href="/"><?php echo $title; ?></a>
+					<a href="<?php echo $this->nav(); ?>"><?php echo $title; ?></a>
 				</h1>
 				<nav>
 					<ul>
@@ -34,6 +34,8 @@
 			
 			<footer>
 				<p><?php echo $colophon; ?></p>
+				<?php echo my_custom_function(); ?> ;-)
+				<?php echo $this->my_a_extension(); ?>
 			</footer>
 		</div>
 	</body>

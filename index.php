@@ -13,5 +13,5 @@ if ( file_exists('a.php') ) {
 		new A( $path );
 	}
 } else {
- die("Could not find A");
+  die("Could not find A");
 }
