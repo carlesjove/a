@@ -28,38 +28,38 @@ If you create a file named `layout.php` **A** will use it as a wrapper for all p
 ```
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
-	<head>
-		<meta charset="utf-8">
-		<title>My Site</title>
-		<link rel="stylesheet" type="text/css" href="/assets/css/example.css">
-	</head>
-	<body>
-		<header>
-			<h1>My Site</h1>
-			<nav>
-				<ul>
-					<li><a href="<?php echo $this->nav('my-page'); ?>">My Page</a></li>
-					<li><a href="<?php echo $this->nav('my-sub-page'); ?>">My Sub Page</a></li>
-				</ul>
-			</nav>
+  <head>
+    <meta charset="utf-8">
+    <title>My Site</title>
+    <link rel="stylesheet" type="text/css" href="/assets/css/example.css">
+  </head>
+  <body>
+    <header>
+      <h1>My Site</h1>
+      <nav>
+        <ul>
+          <li><a href="<?php echo $this->nav('my-page'); ?>">My Page</a></li>
+          <li><a href="<?php echo $this->nav('my-sub-page'); ?>">My Sub Page</a></li>
+        </ul>
+      </nav>
 
-			<!-- This site is multilingual, so here go the languages -->
-			<ul class="lang-list">
-				<li><a href="<?php echo $this->lang('ca'); ?>">Català</a></li>
-				<li><a href="<?php echo $this->lang('es'); ?>">Castellano</a></li>
-				<li><a href="<?php echo $this->lang('en'); ?>">English</a></li>
-			</ul>
-		</header>
-		
-		<main>
-		<!-- Here we load each page's content -->
-		<?php $this->content(); ?>
-		</main>
-		
-		<footer>
-			<p>What a footer!</p>
-		</footer>
-	</body>
+      <!-- This site is multilingual, so here go the languages -->
+      <ul class="lang-list">
+        <li><a href="<?php echo $this->lang('ca'); ?>">Català</a></li>
+        <li><a href="<?php echo $this->lang('es'); ?>">Castellano</a></li>
+        <li><a href="<?php echo $this->lang('en'); ?>">English</a></li>
+      </ul>
+    </header>
+    
+    <main>
+    <!-- Here we load each page's content -->
+    <?php $this->content(); ?>
+    </main>
+    
+    <footer>
+      <p>What a footer!</p>
+    </footer>
+  </body>
 </html>
 ```
 
