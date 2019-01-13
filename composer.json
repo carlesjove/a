@@ -1,0 +1,19 @@
+{
+  "name": "carlesjove/a",
+  "type": "library",
+  "description": "A micro framework based on file naming",
+  "keywords": ["multilingual"],
+  "homepage": "https://github.com/carlesjove/a",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Carles Jove i Buxeda",
+      "email": "hola@carlus.cat",
+      "homepage": "http://carlus.cat",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": ">=7.1.0"
+  }
+}
