@@ -205,7 +205,7 @@ if ( ! class_exists('A') ) {
      * <?php echo $this->stylesheet('app'); ?>
      */
     public function stylesheet($name) {
-      return "<link rel='stylesheet' type='text/css' href='assets/css/{$name}.css' />";
+      return "<link rel='stylesheet' type='text/css' href='/assets/css/{$name}.css' />";
     }
   }
 
