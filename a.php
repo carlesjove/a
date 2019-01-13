@@ -196,6 +196,17 @@ if ( ! class_exists('A') ) {
     public function lang($lang) {
       return '/' . $lang . '/' . implode('/', $this->path);
     }
+
+    /**
+     * Stylesheet
+     * Returns a stylesheet link
+     *
+     * In your layout.php you would use is like this:
+     * <?php echo $this->stylesheet('app'); ?>
+     */
+    public function stylesheet($name) {
+      return "<link rel='stylesheet' type='text/css' href='assets/css/{$name}.css' />";
+    }
   }
 
 }
