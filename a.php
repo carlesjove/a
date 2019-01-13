@@ -22,7 +22,29 @@ if ( ! class_exists('A') ) {
     {
       $this->path = $this->ignore_ending_slash( explode('/', $path) );
       $this->layout = $this->as_file($this->layout);
-      $this->dispatch();
+    }
+
+    public function dispatch() {
+      try {
+        $this->find_matches();
+
+        // Include custom functions
+        if ( file_exists( $this->as_file('functions') ) ) {
+          include $this->as_file('functions');
+        }
+
+        if ( $this->uses_layout() ) {
+          include $this->global_data();
+          if ( $this->is_multilingual() and $this->current_lang ) {
+            include $this->global_data($this->current_lang);
+          }
+          include $this->layout;
+        } else {
+          $this->content();
+        }
+      } catch (Exception $e) {
+        echo $e->getMessage();
+      }
     }
 
     protected function find_matches() {
@@ -98,29 +120,6 @@ if ( ! class_exists('A') ) {
       }
 
       include $this->request;
-    }
-
-    protected function dispatch() {
-      try {
-        $this->find_matches();
-
-        // Include custom functions
-        if ( file_exists( $this->as_file('functions') ) ) {
-          include $this->as_file('functions');
-        }
-
-        if ( $this->uses_layout() ) {
-          include $this->global_data();
-          if ( $this->is_multilingual() and $this->current_lang ) {
-            include $this->global_data($this->current_lang);
-          }
-          include $this->layout;
-        } else {
-          $this->content();
-        }
-      } catch (Exception $e) {
-        echo $e->getMessage();
-      }
     }
 
     protected function global_data($lang = '') {

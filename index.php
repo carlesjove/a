@@ -10,7 +10,8 @@ if ( file_exists('a.php') ) {
       A::generate_htaccess();
     }
     $path = isset($_GET['path']) ? $_GET['path'] : '';
-    new A( $path );
+    $a = new A( $path );
+    $a->dispatch();
   }
 } else {
   die("Could not find A");
