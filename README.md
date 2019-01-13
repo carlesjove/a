@@ -2,7 +2,7 @@
 **A** is a PHP microframework based on file naming, for those times you want to keep things simple. Just name a file `like_this.php` and you'll get a working route `http://example.com/like/this`. No database, no configuration files, no nothing. And it's ready for multilingual sites.
 
 ## Overview
-**A** is meant for simple sites that do not require database or complex architectures, but still want to have clean URLs and stuff as organized as possible. 
+**A** is meant for simple sites that do not require database or complex architectures, but still want to have clean URLs and stuff as organized as possible.
 
 #### Features
 - Clean URLs based on file naming
@@ -50,12 +50,12 @@ If you create a file named `layout.php` **A** will use it as a wrapper for all p
         <li><a href="<?php echo $this->lang('en'); ?>">English</a></li>
       </ul>
     </header>
-    
+
     <main>
     <!-- Here we load each page's content -->
     <?php $this->content(); ?>
     </main>
-    
+
     <footer>
       <p>What a footer!</p>
     </footer>
@@ -69,7 +69,7 @@ If you create a file named `layout.php` **A** will use it as a wrapper for all p
 Within the `data` directory you'll find a file called `global.php` where you can write site wide variables. You can also create individual files that will be only loaded on page request, by simply naming them the same as the page file. So if you have a page named `about.php` **A** will look for a `data/about.php` file and load it. If your page is `very_long_route.php`, then the data for it will be in `data/very_long_route.php`.
 
 #### Lists and single item pages
-**A** allows to create individual item pages from a list using a single template, just like in MVC frameworks and most CMS. 
+**A** allows to create individual item pages from a list using a single template, just like in MVC frameworks and most CMS.
 
 Imagine you have a page called `posts.php` that lists all your posts. You can now create another file called `posts_[id].php` which will be used as the template for individual posts. You need to have the array of posts in `data/posts.php` and name it `$list`, where each array's `key` is the url you want for the post. **A** will load the post data in the `$item` variable. Example:
 
@@ -145,4 +145,4 @@ Sometimes you want to do things, and you wrap them in functions. You can put the
 - Adds support for `list/:id` items
 
 ## License
-Do whatever the fuck you want with this code. Really. 
+Do whatever the fuck you want with this code. Really.
