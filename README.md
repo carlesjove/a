@@ -25,7 +25,7 @@ Imagine you want `this/cool/uri` in your site. For it to work, you just need to 
 #### Layout
 If you create a file named `layout.php` **A** will use it as a wrapper for all pages, and thus you can save some time and keep things cleaner. You just need to include `<?php $this->content(); ?>` where you want each page content displayed. Here's an example:
 
-```
+```php
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
   <head>
@@ -73,18 +73,18 @@ Within the `data` directory you'll find a file called `global.php` where you can
 
 Imagine you have a page called `posts.php` that lists all your posts. You can now create another file called `posts_[id].php` which will be used as the template for individual posts. You need to have the array of posts in `data/posts.php` and name it `$list`, where each array's `key` is the url you want for the post. **A** will load the post data in the `$item` variable. Example:
 
-```
+```php
 // data/posts.php
 // The array must be named $list
 $list = array(
-	'first-post' => array(
-		'title' => 'My first post',
-		'body'	=> 'A very long post'
-	),
-	'second-post' => array(
-		'title' => 'My second post',
-		'body'	=> 'A very long post'
-	)
+  'first-post' => array(
+    'title' => 'My first post',
+    'body'  => 'A very long post'
+  ),
+  'second-post' => array(
+    'title' => 'My second post',
+    'body'  => 'A very long post'
+  )
 );
 
 // posts_[id].php
@@ -108,16 +108,16 @@ One important thing to know is: **A** won't use translations instead of other da
 
 If you're creating a multilingual site, you'd really want to use the helper methods `nav()` and `lang()` to preserve routes accross languages.
 
-```
+```php
 <!-- Make sure current language will be on the navigation links or in lists' links, using nav() -->
 <a href="<?php echo $this->nav('my-page'); ?>">My Page</a>
 
 <?php foreach ( $list as $k => $item ): ?>
-<li>
-	<a href="<?php echo $this->nav("list/{$k}"); ?>">
-		<?php echo $item['title']; ?>
-	</a>
-</li>
+  <li>
+    <a href="<?php echo $this->nav("list/{$k}"); ?>">
+      <?php echo $item['title']; ?>
+    </a>
+  </li>
 <?php endforeach; ?>
 
 <!-- Make sure you will stay on the same page when switching languages, using lang() -->
